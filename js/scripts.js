@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function() { // Solo espera por el
 
 console.log(5);
 
-window.onscroll = function() { //Esta funcion esta ejecutandose multiples veces cuando se hace scroll a la ventana
-    console.log('scrolling...');
-}
+// window.onscroll = function() { //Esta funcion esta ejecutandose multiples veces cuando se hace scroll a la ventana
+//     console.log('scrolling...');
+// }
 
 
 // Seleccionar elementos y asociarles un evento
@@ -70,9 +70,29 @@ btnEnviar.addEventListener('click', function(evento) {
     // Validar un formulario 
 
     console.log('Enviando Formulario...');
-})
+});
 
 
+//Eventos de los Inputs y TextArea
 
+const datos = {
+    nombre : '',
+    email : '',
+    mensaje : ''
+}
 
+const nombre = document.querySelector('#nombre');
+const email = document.querySelector('#email');
+const mensaje = document.querySelector('#mensaje');
 
+nombre.addEventListener('input', leerTexto);
+email.addEventListener('input', leerTexto);
+mensaje.addEventListener('input', leerTexto);
+
+function leerTexto (evento) {
+    // console.log(evento.target.value);
+
+    datos[evento.target.id] = evento.target.value;
+
+    console.log(datos);
+}
