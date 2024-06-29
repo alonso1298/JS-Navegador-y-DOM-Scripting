@@ -61,6 +61,17 @@ window.onscroll = function() { //Esta funcion esta ejecutandose multiples veces 
 }
 
 
+// Seleccionar elementos y asociarles un evento
+const btnEnviar = document.querySelector('.boton--primario');
+btnEnviar.addEventListener('click', function(evento) {
+    console.log(evento);
+    evento.preventDefault(); //Previene la accion por Default
+
+    // Validar un formulario 
+
+    console.log('Enviando Formulario...');
+})
+
 
 
 
