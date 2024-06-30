@@ -97,9 +97,10 @@ formulario.addEventListener('submit', function(evento) {
     // Validar el Formulario
     const {nombre, email, mensaje} = datos;
 
+    //Verifica si el parafo de error y envio no existen, si no exixten ejecutan el codigo
     if(document.querySelector(".error")===null && document.querySelector(".envio")===null){
         if(nombre === ''|| email === '' || mensaje === ''){
-            mostrarError('Todos los campos son obligatorios');
+            mostrarAlerta('Todos los campos son obligatorios', true);
             return; // return en un if corta la ejecucion del codigo, por lo que no se enviara el formulario
         }
         console.log(email);
@@ -109,9 +110,9 @@ formulario.addEventListener('submit', function(evento) {
         // Enviar Formulario
         console.log('Enviando Formulario');
         //Alerta de Enviar correctamente
-        mostrarEnvio('Mensaje enviado correctamente');
+        mostrarAlerta('Mensaje enviado correctamente');
     }
-})
+});
 
 
 function leerTexto (evento) {
@@ -122,31 +123,18 @@ function leerTexto (evento) {
     // console.log(datos);
 }
 
-//Muestra un error en pantalla
-function mostrarError(mensaje){
-    const error = document.createElement('P');
-    error.textContent = mensaje;
-    error.classList.add('error');
-
-    formulario.appendChild(error);
-
+function mostrarAlerta(mensaje, error = null) {
+    const alerta = document.createElement('P');
+    alerta.textContent = mensaje
+    if(error) {
+        alerta.classList.add('error')
+    }else {
+        alerta.classList.add('envio')
+    }
+    formulario.appendChild(alerta)
     // Desaparezca despues de 3 segundos
     setTimeout(() => {
-        error.remove();
-    }, 3000);
-}
-
-//Muestra una alerta de que se envio correctamente 
-function mostrarEnvio(mensaje){
-    const envio = document.createElement('P');
-    envio.textContent = mensaje;
-    envio.classList.add('envio');
-
-    formulario.appendChild(envio);
-
-    // Desaparezca despues de 3 segundos
-    setTimeout(() => {
-        envio.remove();
+        alerta.remove();
     }, 3000);
 }
 
